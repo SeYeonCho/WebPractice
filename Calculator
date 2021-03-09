@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <style>
+        button{
+            width: 30px; height: 30px;
+            padding: 5px;
+            margin: 3.5px;
+        }
+        #input{
+            border: 1px solid red;
+            width: 170px;
+        }
+        #msg{
+            width: 160px;
+            margin: 2px;
+        }
+        #doCal{
+            border: 2px solid rgba(76, 158, 251, 0.801);
+        }
+    </style>
+</head>
+<body>
+    <input id="msg" type="text" value='0'/>
+    <div id="input">
+        <div>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>+</button>
+        </div>
+        <div>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>-</button>
+        </div>
+        <div>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>*</button>
+        </div>
+        <div>   
+            <button>0</button>
+            <button id="clear">CE</button>
+            <button id="doCal">=</button>
+            <button>/</button>
+        </div>
+    </div>
+    
+    <h2>결 과 이 력</h2>
+    <div id="result"></div>
+    
+
+    <script>
+        var val = '';
+        var cnt = 1;
+        var clear = function(){
+            val = '';
+            $('#msg').attr({'value':val});
+        }
+        $('button').click(function(){
+            if(this.innerText=='=') return;
+            val += this.innerText;
+            $('#msg').attr({'value':val});
+        });
+        $('#clear').click(function(){
+            clear();
+        });
+        $('#doCal').click(function(){
+            $('#result').append(`<p> ${cnt++}. ${val} = ${eval(val)} `);
+            clear();
+        });
+    </script>
+</body>
+</html>
